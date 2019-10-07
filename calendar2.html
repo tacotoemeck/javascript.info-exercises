@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calendar Exercise</title>
+
+<style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td,
+    th {
+      border: 1px solid black;
+      padding: 3px;
+      text-align: center;
+    }
+
+    th {
+      font-weight: bold;
+      background-color: #E6E6E6;
+    }
+  </style>
+
+</head>
+<body>
+<div id="calendar">
+</div>
+
+<script>
+
+function createCalendar(elem, year, month) {
+
+	
+	//first of the month +
+	let date = new Date(year, month-1);
+	//number of days in a given month +
+	let days = new Date(year, month, 0).getDate()
+	// first day of the month+
+	let first = date.getDay();
+	if ( first == 0 ) {
+		first = 7;
+	}
+	//last day of the month
+	let lastDay = date.getDay(days);
+	
+	const table = document.createElement('table');
+	table.id = 'calendarTable';
+	calendar.append(table);
+
+	let tableInput = '<tr><th>MO</th><th>TU</th><th>WE</th><th>TH</th><th>FR</th><th>SA</th><th>SU</th></tr>';
+	// add spaces before the 1st
+	for ( let i = 1; i < first; i++) {
+		tableInput += '<td></td>'
+	}
+	// add all the days of the month
+	for ( let j = 1; j <= days; j++) {
+		tableInput += '<td>' + j + '</td>';
+		let sunday = new Date(year, month-1, j).getDay(); 
+		
+		if (sunday == 0) {
+
+			tableInput += '<tr></tr>'
+		}
+
+	}
+	// add spaces at the end
+	for ( let k = 1; k < 7 - lastDay; k++) {
+		tableInput+='<td></td>'
+	};
+
+	table.innerHTML = tableInput;
+	};
+
+createCalendar("p", 2012, 9)
+
+
+</script>
+</body>
+</html>

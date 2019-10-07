@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create A Tree</title>
+</head>
+<body>
+
+<div id="container">
+
+
+
+</div>
+
+<script>
+	let data = {
+  "Fish": {
+    "trout": {},
+    "salmon": {}
+  },
+
+  "Tree": {
+    "Huge": {
+      "sequoia": {},
+      "oak": {}
+    },
+    "Flowering": {
+      "apple tree": {},
+      "magnolia": {}
+    }
+  }
+};
+
+const ul = document.createElement('ul');
+
+container.append(ul)
+
+function iterate(obj, x) {
+	for ( let property in obj ) {
+
+
+		let li = document.createElement('li')
+		li.append(property)
+		
+		x.append(li)
+		
+	
+		if ( Object.keys(obj).length > 0) {
+
+			let newUl = document.createElement('ul')
+			li.append(newUl)
+			iterate(obj[property], newUl)
+		}
+
+	}
+	
+
+}
+
+iterate(data, ul)
+
+
+
+</script>
+
+</body>
+</html>
